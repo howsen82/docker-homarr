@@ -1,0 +1,20 @@
+version: '3.9'
+
+services:
+  homarr:
+    container_name: homarr
+    image: ghcr.io/ajnart/homarr:latest
+    environment:
+      PASSWORD: password
+      EDIT_MODE_PASSWORD: password
+      DISABLE_EDIT_MODE: FALSE #or TRUE
+      TZ: Asia/Kuching
+    mem_limit: 2g
+    cpu_shares: 768
+    ports:
+      - 7575:7575
+    volumes:
+      - /data/homarr:/app/data/configs:rw
+      - /data/homarr/icons:/app/public/icons:rw
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: on-failure:5
